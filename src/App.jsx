@@ -2,13 +2,16 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(4)
+  const [count, setCount] = useState(10)
+  const [color, setColor] = useState("blue")
 
   function decrementCount() {
-    return setCount(prevCount => count - 1)
+    setCount(prevCount => prevCount -1)
+    setColor("red")
   }
   function incrementCount() {
-    return setCount(prevCount => prevCount + 1)
+    setCount(prevCount => prevCount +1)
+    setColor("blue")
   }
 
   return (
@@ -17,6 +20,7 @@ function App() {
 
       <button onClick={decrementCount}>-</button>
       <span>{count}</span>
+      <span>{color}</span>
       <button onClick={incrementCount}>+</button>
     </>
   )
