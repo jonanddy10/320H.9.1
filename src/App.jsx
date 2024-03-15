@@ -3,15 +3,28 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(10)
-  const [color, setColor] = useState("blue")
+  const [phrase, setPhrase] = useState("This is the start")
 
   function decrementCount() {
+    if(count <= 1){
+      statusOver()
+    }
     setCount(prevCount => prevCount -1)
-    setColor("red")
   }
   function incrementCount() {
-    setCount(prevCount => prevCount +1)
-    setColor("blue")
+    if(count > 1){
+      statusOK()
+    }
+    setCount(prevCount => prevCount + 1)
+  }
+  function statusOK() {
+    setPhrase("Keep going!")
+  }
+  function statusOver() {
+    setPhrase("The end.")
+  }
+  function justPractice(){
+    console.log("Peakaboo")
   }
 
   return (
@@ -20,8 +33,11 @@ function App() {
 
       <button onClick={decrementCount}>-</button>
       <span>{count}</span>
-      <span>{color}</span>
       <button onClick={incrementCount}>+</button>
+      <br/>
+      <span>{phrase}</span>
+      <br/>
+      <button onClick={justPractice}>...</button>
     </>
   )
 }
