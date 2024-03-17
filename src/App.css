@@ -18,36 +18,40 @@ body{
   display: flex;
   flex-direction: column;
   width: 30%;
+  
 }
 .add-task-bar {
   border: 2px solid black;
   height: 30px;
   border-radius: 15px 15px 0px 0px;
+  text-align: center;
 }
 .add-button {
-  background-color: green;
-  color: white;
+  background-color: rgb(216, 216, 182);
+  color: black;
   border-radius: 0px 0px 15px 15px;
   border: none;
 }
 .add-button:hover {
   border: none;
 }
-
+.side-buttons-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
 .done-button {
   background-color: green;
   color: white;
-  height: 5%;
+  margin-bottom: 1vh;
 }
-
-.button {
+.edit-button {
   transition-duration: 1s;
   background-color: beige;
   color: black;
   border: none;
 }
-
-.button:hover {
+.edit-button:hover {
   background-color: darkblue;
   color: white;
   border: none;
@@ -65,23 +69,18 @@ body{
   border: none;
 }
 
-.buttons {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
 .task {
   text-align: left;
   width: 250px;
-  
 }
 
 .single-item {
+  margin-top: 2rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  width: 400px;
 }
 
 ol{

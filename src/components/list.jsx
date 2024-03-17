@@ -3,7 +3,9 @@ import { useState } from 'react'
 function List() {
   const [task, setTask] = useState(["Go on a run", "Make breakfast", "Drop off keys"])
   const [newTask, setNewTask] = useState("")
-  
+  // track whether an index is being edited. Use -1 as default (not editing)
+  const [editingIndex, setEditingIndex] = useState(-1)
+
   function onChange(e) {
     setNewTask(e.target.value)
   }
@@ -21,37 +23,15 @@ function List() {
     setTask(update)
   }
 
-  function moveUp(index) {
-    if(index > 0){
-      const update = [...task];
-      // switch positions
-      [update[index], update[index - 1]] = 
-      [update[index - 1], update[index]]
-      setTask(update)
-    }
-  }
-
-  function moveDown(index) {
-    if(index < task.length - 1){
-      const update = [...task];
-      // switch positions
-      [update[index], update[index + 1]] = 
-      [update[index + 1], update[index]]
-      setTask(update)
-    }
-  }
-
   function editTask(index) {
-    const edited = <input
-    className='editBar'
-    type='text'/>
-
+    setEditingIndex(index)
+  }
+  function saveTask(index, updatedText){
     const update = [...task];
-    // replace string at index here:
-
+    update[index] = updatedText
     // set updated array as new state
     setTask(update)
-
+    setEditingIndex(-1)
   }
 
   return (
@@ -66,54 +46,43 @@ function List() {
         value={newTask}
         onChange={onChange}/>
 
-        <button 
-          className="add-button" 
-          onClick={addTask}>
-          <b>+</b>
-        </button>
+      <button 
+        className="add-button" 
+        onClick={addTask}>
+        <b>+</b>
+      </button>
       </div>
 
-      <ol>
+      
         {task.map((task, index) =>
         <div key={index} className='list-items'>
 
           <div className='single-item'>
-            <span className='task'><h3><b>{task}</b></h3></span>
+            <span className='task'onClick={() => finished(index)}>
+              <h3><b>{task}</b></h3></span>
+            <div className='side-buttons-group'>
             <button className="done-button">
-            Done
+              Done
             </button>
+            <button className="edit-button" onClick={() => editTask(index)}>
+              Edit
+            </button>
+            </div>
           </div>
 
           <div className='buttons'>
-          <button
-            className="button"
-            onClick={() => editTask(index)}>
-            Edit
-          </button>
           
-          <button 
+          
+          <button
             className="delete-button"
             onClick={() => deleteTask(index)}>
             Delete
           </button>
           
-          {/* <button 
-            className="move-button"
-            onClick={() => moveUp(index)}>
-            Move up
-          </button>
-          
-          <button 
-            className="move-button"
-            onClick={() => moveDown(index)}>
-            Move down
-          </button> */}
-          
           </div>
         
         </div>
         )}
-      </ol>
     </div>
   )
 }
