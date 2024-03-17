@@ -1,3 +1,6 @@
+body{
+  background-color: antiquewhite;
+}
 .to-do-list {
   display: flex;
   flex-direction: column;
@@ -10,17 +13,28 @@
   display: flex;
   justify-content: center;
 }
+
+.user-input-component {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
 .add-task-bar {
   border: 2px solid black;
-  height: 25px;
+  height: 30px;
+  border-radius: 15px 15px 0px 0px;
 }
 .add-button {
-  background-color: black;
+  background-color: green;
   color: white;
-  margin-left: 5px;
+  border-radius: 0px 0px 15px 15px;
+  border: none;
 }
+.add-button:hover {
+  border: none;
+}
+
 .done-button {
-  margin-top: 6%;
   background-color: green;
   color: white;
   height: 5%;
@@ -32,6 +46,13 @@
   color: black;
   border: none;
 }
+
+.button:hover {
+  background-color: darkblue;
+  color: white;
+  border: none;
+}
+
 .delete-button {
   background-color: beige;
   border: none;
@@ -51,8 +72,8 @@
 }
 
 .task {
-text-align: left;
-width: 200px;
+  text-align: left;
+  width: 250px;
   
 }
 
@@ -60,4 +81,9 @@ width: 200px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+}
+
+ol{
+  padding: 0;
 }

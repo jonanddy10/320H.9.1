@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 function List() {
-  const [task, setTask] = useState(["Go on a run", "Eat breakfast", "Drop off keys"])
+  const [task, setTask] = useState(["Go on a run", "Make breakfast", "Drop off keys"])
   const [newTask, setNewTask] = useState("")
   
   function onChange(e) {
@@ -42,6 +42,15 @@ function List() {
   }
 
   function editTask(index) {
+    const edited = <input
+    className='editBar'
+    type='text'/>
+
+    const update = [...task];
+    // replace string at index here:
+
+    // set updated array as new state
+    setTask(update)
 
   }
 
@@ -49,18 +58,18 @@ function List() {
     <div className="to-do-list">
 
       {/* add-todo component */}
-      <div>
+      <div className='user-input-component'>
         <input
         className="add-task-bar"
         type="text"
-        placeholder="New task"
+        placeholder='Pay car bill'
         value={newTask}
         onChange={onChange}/>
 
         <button 
           className="add-button" 
           onClick={addTask}>
-          add
+          <b>+</b>
         </button>
       </div>
 
