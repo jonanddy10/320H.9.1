@@ -4,11 +4,11 @@ function List() {
   const [task, setTask] = useState(["Go on a run", "Eat breakfast", "Drop off keys"])
   const [newTask, setNewTask] = useState("")
   
-  function onChange(e){
+  function onChange(e) {
     setNewTask(e.target.value)
   }
 
-  function addTask(){
+  function addTask() {
     // prevent an empty string from being added
     if(newTask.trim() !== ""){
     setTask(prevTask => [...prevTask, newTask])
@@ -16,12 +16,12 @@ function List() {
     }
   }
 
-  function deleteTask(index){
+  function deleteTask(index) {
     const update = task.filter((element, i) => i !== index)
     setTask(update)
   }
 
-  function moveUp(index){
+  function moveUp(index) {
     if(index > 0){
       const update = [...task];
       // switch positions
@@ -31,7 +31,7 @@ function List() {
     }
   }
 
-  function moveDown(index){
+  function moveDown(index) {
     if(index < task.length - 1){
       const update = [...task];
       // switch positions
@@ -41,12 +41,17 @@ function List() {
     }
   }
 
+  function editTask(index) {
+
+  }
+
   return (
     <div className="to-do-list">
-      <h1 className='header'>todo list</h1>
 
+      {/* add-todo component */}
       <div>
         <input
+        className="add-task-bar"
         type="text"
         placeholder="New task"
         value={newTask}
@@ -61,17 +66,29 @@ function List() {
 
       <ol>
         {task.map((task, index) =>
-  
-        <li key={index}>
-          <span className="text">{task}</span>
+        <div key={index} className='list-items'>
+
+          <div className='single-item'>
+            <span className='task'><h3><b>{task}</b></h3></span>
+            <button className="done-button">
+            Done
+            </button>
+          </div>
+
+          <div className='buttons'>
+          <button
+            className="button"
+            onClick={() => editTask(index)}>
+            Edit
+          </button>
           
           <button 
             className="delete-button"
             onClick={() => deleteTask(index)}>
             Delete
           </button>
-
-          <button 
+          
+          {/* <button 
             className="move-button"
             onClick={() => moveUp(index)}>
             Move up
@@ -81,9 +98,11 @@ function List() {
             className="move-button"
             onClick={() => moveDown(index)}>
             Move down
-          </button>
+          </button> */}
+          
+          </div>
         
-        </li>
+        </div>
         )}
       </ol>
     </div>
